@@ -6,22 +6,23 @@
 //  Copyright © 2015 StackSample. All rights reserved.
 //
 
+
 #import "ViewController.h"
 
-@interface ViewController ()
 
+@implementation TableViewCell
 @end
 
-@implementation ViewController
+@implementation TableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    NSArray * cells =  [self.tableView visibleCells];
+    for (TableViewCell* cell in cells) {
+        NSIndexPath * indexPathOfCell = [self.tableView indexPathForCell:cell];
+        CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPathOfCell];
+        cell.verticalCenter.constant = (scrollView.contentOffset.y -cellRect.origin.y)/kParallaxRatio;
+    }
 }
 
 @end

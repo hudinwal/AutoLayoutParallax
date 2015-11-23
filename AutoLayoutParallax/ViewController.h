@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#define kParallaxRatio 8.0
 
-@interface ViewController : UIViewController
+#pragma mark - Custom Cell
 
-
+@interface TableViewCell : UITableViewCell
+@property (nonatomic,weak) IBOutlet NSLayoutConstraint * verticalCenter;
 @end
 
+#pragma mark - Custom Table View Controller
+
+@interface TableViewController : UITableViewController
+@end
